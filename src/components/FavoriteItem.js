@@ -1,21 +1,21 @@
 // Imports
 import React from "react";
 import styled from "styled-components";
-import { useDispatch } from "react-redux";
+import { useProductContext } from "../context/products-context";
 import { toggleFav } from "../store/features/shopSlice";
 
 // Component
 const FavoriteItem = ({ id, description, title, isFavorite }) => {
 
-	// Dispatch to store
-	const dispatch = useDispatch();
+	// Context
+	const { toggleFav } = useProductContext();
 
 	// Return
 	return(
 		<Wrapper className="card">
 			<h2>{ title }</h2>
 			<p>{ description }</p>
-			<button className={ !isFavorite ? 'button-outline' : '' } onClick={ () => { dispatch(toggleFav(id)) } }>
+			<button className={ !isFavorite ? 'button-outline' : '' } onClick={ () => { toggleFav(id); } }>
 				{ isFavorite ? 'Un-Favorite' : 'Favorite' }
 			</button>
 		</Wrapper>

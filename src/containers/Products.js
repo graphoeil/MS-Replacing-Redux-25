@@ -1,14 +1,14 @@
 // Imports
 import React from "react";
-import { useSelector } from "react-redux";
 import styled from "styled-components";
 import ProductItem from "../components/ProductItem";
+import { useProductContext } from "../context/products-context";
 
 // Component
 const Products = () => {
 
-	// Store
-	const { products } = useSelector((store) => { return store.shop });
+	// Context
+	const { products } = useProductContext();
 
 	// Return
 	return(

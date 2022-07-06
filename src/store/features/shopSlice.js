@@ -24,14 +24,6 @@ const shopSlice = createSlice({
 			});
 			// Toggle favorite, dont forget we use immer ,-)
 			state.products[prodIndex].isFavorite = !state.products[prodIndex].isFavorite;
-			// const newFavStatus = !state.products[prodIndex].isFavorite;
-			// const updatedProducts = [ ...state.products ];
-			// updatedProducts[prodIndex] = {
-			// 	...state.products[prodIndex], isFavorite:newFavStatus
-			// };
-			// return {
-			// 	...state, products:updatedProducts
-			// };
 		}
 	}
 });

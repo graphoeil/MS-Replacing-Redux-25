@@ -1,18 +1,24 @@
 // Imports
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FavoriteItem from "../components/FavoriteItem";
+import { useProductContext } from "../context/products-context";
 
 // Component
 const Favorites = () => {
 
-	// Store
-	const favorites = useSelector((store) => {
-		return store.shop.products.filter((product) => {
-			return product.isFavorite;
+	// Context
+	const { products } = useProductContext();
+
+	// Favorites
+	const [favorites, setFavorites] = useState([]);
+	useEffect(() => {
+		setFavorites(() => {
+			return products.filter((product) => {
+				return product.isFavorite;
+			});
 		});
-	});
+	},[products]);
 
 	// Returns
 	if (!favorites || favorites.length <= 0){
