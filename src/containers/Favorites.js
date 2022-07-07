@@ -2,23 +2,23 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import FavoriteItem from "../components/FavoriteItem";
-import { useProductContext } from "../context/products-context";
+import { useStore } from "../hooks/store";
 
 // Component
 const Favorites = () => {
 
-	// Context
-	const { products } = useProductContext();
+	// Custom hook store
+	const [state, dispatch] = useStore();
 
 	// Favorites
 	const [favorites, setFavorites] = useState([]);
 	useEffect(() => {
 		setFavorites(() => {
-			return products.filter((product) => {
+			return state.products.filter((product) => {
 				return product.isFavorite;
 			});
 		});
-	},[products]);
+	},[state.products]);
 
 	// Returns
 	if (!favorites || favorites.length <= 0){

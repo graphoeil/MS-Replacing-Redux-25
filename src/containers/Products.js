@@ -2,19 +2,19 @@
 import React from "react";
 import styled from "styled-components";
 import ProductItem from "../components/ProductItem";
-import { useProductContext } from "../context/products-context";
+import { useStore } from "../hooks/store";
 
 // Component
 const Products = () => {
 
-	// Context
-	const { products } = useProductContext();
+	// Custom hook store
+	const [state, dispatch] = useStore();
 
 	// Return
 	return(
 		<Wrapper>
 			{
-				products.map((product) => {
+				state.products.map((product) => {
 					return <ProductItem key={ product.id } { ...product }/>;
 				})
 			}

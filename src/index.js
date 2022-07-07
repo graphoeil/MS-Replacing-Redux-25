@@ -4,15 +4,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 
-// Context
-import { ProductsProvider } from "./context/products-context";
+// Custom hook store
+import configureStore from "./hooks/products-store";
+// Initialize the store, then it'll be accessible from everywhere
+configureStore();
 
 // ReactDOM
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<ProductsProvider>
-			<App />
-		</ProductsProvider>
+		<App />
 	</React.StrictMode>
 );

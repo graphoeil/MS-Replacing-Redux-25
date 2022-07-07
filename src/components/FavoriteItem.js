@@ -1,21 +1,20 @@
 // Imports
 import React from "react";
 import styled from "styled-components";
-import { useProductContext } from "../context/products-context";
-import { toggleFav } from "../store/features/shopSlice";
+import { useStore } from "../hooks/store";
 
 // Component
 const FavoriteItem = ({ id, description, title, isFavorite }) => {
 
-	// Context
-	const { toggleFav } = useProductContext();
+	// Custom hook store
+	const [state, dispatch] = useStore();
 
 	// Return
 	return(
 		<Wrapper className="card">
 			<h2>{ title }</h2>
 			<p>{ description }</p>
-			<button className={ !isFavorite ? 'button-outline' : '' } onClick={ () => { toggleFav(id); } }>
+			<button className={ !isFavorite ? 'button-outline' : '' } onClick={ () => { dispatch('TOGGLE_FAV', id); } }>
 				{ isFavorite ? 'Un-Favorite' : 'Favorite' }
 			</button>
 		</Wrapper>
