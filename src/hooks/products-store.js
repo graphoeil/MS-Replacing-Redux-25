@@ -1,5 +1,4 @@
 // Imports
-import React from "react";
 import { initStore } from "./store";
 
 // Products

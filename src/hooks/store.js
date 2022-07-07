@@ -1,12 +1,12 @@
 // Imports
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
+// These 3 variables are accessible from everywhere 
+// as global data since they're out of the hook useStore
 // Global state
 let globalState = {};
-
 // Listen to changes in the state
 let listeners = [];
-
 // Actions to dispatch
 let actions = {};
 
@@ -42,7 +42,7 @@ export const useStore = () => {
 				return listener !== setState;
 			});
 		}
-	},[]);
+	},[setState]);
 	
 	// Return of custom hook
 	return [globalState, dispatch];

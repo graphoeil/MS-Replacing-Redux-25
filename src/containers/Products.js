@@ -8,7 +8,7 @@ import { useStore } from "../hooks/store";
 const Products = () => {
 
 	// Custom hook store
-	const [state, dispatch] = useStore();
+	const state = useStore()[0];
 
 	// Return
 	return(

@@ -8,7 +8,7 @@ import { useStore } from "../hooks/store";
 const Favorites = () => {
 
 	// Custom hook store
-	const [state, dispatch] = useStore();
+	const state = useStore()[0];
 
 	// Favorites
 	const [favorites, setFavorites] = useState([]);
