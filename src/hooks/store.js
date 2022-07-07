@@ -11,7 +11,9 @@ let listeners = [];
 let actions = {};
 
 // Custom store hook
-export const useStore = () => {
+// shouldUpdate true on first mounting or when his state change 
+// for each component that use useStore
+export const useStore = (shouldUpdate = true) => {
 
 	// useState trigger re-rendering !!!
 	// As a custom hook we only interested with setState
@@ -31,18 +33,22 @@ export const useStore = () => {
 
 	// Only run when the component that use custom hook is mount
 	useEffect(() => {
-		// Every components which use this custom hook
-		// will get is own setState
-		listeners.push(setState);
+		if (shouldUpdate){
+			// Every components which use this custom hook
+			// will get is own setState
+			listeners.push(setState);
+		}
 		// Clean on unmount
 		return () => {
-			listeners = listeners.filter((listener) => {
-				// We keep all listener that doesn't equal to THIS setState component
-				// Because it's a closure setState refers only to THIS component ,-)
-				return listener !== setState;
-			});
+			if (shouldUpdate){
+				listeners = listeners.filter((listener) => {
+					// We keep all listener that doesn't equal to THIS setState component
+					// Because it's a closure setState refers only to THIS component ,-)
+					return listener !== setState;
+				});
+			}
 		}
-	},[setState]);
+	},[setState, shouldUpdate]);
 	
 	// Return of custom hook
 	return [globalState, dispatch];

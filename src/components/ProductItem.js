@@ -4,10 +4,20 @@ import styled from "styled-components";
 import { useStore } from "../hooks/store";
 
 // Component
-const ProductItem = ({ id, title, description, isFavorite }) => {
+const ProductItem = React.memo(({ id, title, description, isFavorite }) => {
+
+	// DEV
+	// On component mount will render all components, but when 
+	// click on one favorite will also render all components !!!
+	// because in custom hook we use useState for every instance
+	// so we add a params shouldUdpate in the store.js file
+	console.log('Rendering');
 
 	// Custom hook store
-	const dispatch = useStore()[1];
+	// shouldUpdate to false for prevent multiples re-rendering 
+	// of all components when other component change, 
+	// we must so use React.memo()
+	const dispatch = useStore(false)[1];
 
 	// Return
 	return(
@@ -20,7 +30,7 @@ const ProductItem = ({ id, title, description, isFavorite }) => {
 		</Wrapper>
 	);
 
-};
+});
 
 // Styled
 const Wrapper = styled.div`
